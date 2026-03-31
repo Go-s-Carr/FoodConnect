@@ -18,11 +18,11 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["email"])
         if ($res) 
         {
          
-          $req="INSERT INTO page VALUES( '../data/images/default.png','".$_POST["age"]."' ,'1','$rand')"; 
+          $req="INSERT INTO page VALUES( 'FoodConnect/data/images/default.png','".$_POST["age"]."' ,'1','$rand')"; 
           $res=mysqli_query($cn,$req);
           echo '
           <head>
-          <link rel="stylesheet" href="../css/global.css">
+          <link rel="stylesheet" href="FoodConnect/css/global.css">
           </head>
           <body class="body" onload="background('."'url(css/img/background/wood.jpg)'".')">
             <form action="/login.php" onsubmit="entry()" method="post" >
@@ -67,11 +67,11 @@ function sign()
 {
     echo '
     <head>
-    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="FoodConnect/css/global.css">
   
     </head>
     <body class="body" >
-      <form action="../sign.php" onsubmit="return test()" method="post" >
+      <form action="FoodConnect/sign.php" onsubmit="return test()" method="post" >
       <fieldset class="window">
       <legend><h3>create account</h3></legend>
       <div>
@@ -90,7 +90,7 @@ function sign()
       </fieldset>
       </form>
       
-      <script src="../js/sign.js"></script>
+      <script src="FoodConnect/js/sign.js"></script>
       </body>
     ';
 }
