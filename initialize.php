@@ -18,19 +18,39 @@ if ($conn->connect_error) {
 // Create database
 $sql = "CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50),
-    email VARCHAR(100),
     password VARCHAR(255),
-    role ENUM('client','restaurant','admin') DEFAULT 'client'
+    email VARCHAR(100),
+    role ENUM('client','restaurant','admin') DEFAULT 'client',
 );
 CREATE TABLE restaurant (
     id INT NOT NULL PRIMARY KEY,
-    rest_name VARCHAR(50),
+    resto_name VARCHAR(50),
     email VARCHAR(100),
-    url varchar(255),
-    password VARCHAR(255),
+    telephone int(8),
+    facebook VARCHAR(255),
+    instagram VARCHAR(255),
+    whatsapp VARCHAR(255),
+
+    image VARCHAR(255),
+    url VARCHAR(255),
+    
 
     
+);
+CREATE TABLE client(
+    id INT NOT NULL PRIMARY KEY,
+    client_name VARCHAR(50),
+    email VARCHAR(100),
+    telephone int(8),
+    image VARCHAR(255),
+);
+CREATE TABLE commande(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user int(50),
+    id_resto int(100),
+    req_date DATE.
+    end_date DATE,
+    status ENUM('pending','preparing','delivering','completed') DEFAULT 'pending',
 );
 
 CREATE TABLE tags (
@@ -48,7 +68,12 @@ CREATE TABLE tags (
 );
 CREATE TABLE post(
     id AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
+    poster_id INT NOT NULL ,
+    
+    image1 VARCHAR(255),
+    image2 VARCHAR(255),
+    image3 VARCHAR(255),
+
 
 
 
@@ -70,18 +95,30 @@ CREATE TABLE vibe (
 );
 CREATE TABLE menu(
     id INT AUTO_INCREMENT PRIMARY KEY,
+    id_resto INT NOT NULL ,
     name VARCHAR(50)
+    image varchar(255),
+
 );
 CREATE TABLE item(
-    menu_id INT NOT NULL PRIMARY KEY,
-    id INT AUTO_INCREMENT ,
+    id INT AUTO_INCREMENT  PRIMARY KEY,
+    menu_id INT NOT NULL,
+    
     catagory INT,
     name VARCHAR(50),
     Prix float,
+    image VARCHAR(255),
+
 
 
 );
-
+CREATE TABLE review(
+    id AUTO_INCREMENT PRIMARY KEY,
+    image VARCHAR(255),
+    text TEXT,
+    id_poster INT,
+    id_restaurant INT,
+);
 CREATE TABLE catagory(
     id AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50),

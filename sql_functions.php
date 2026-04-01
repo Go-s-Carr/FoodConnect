@@ -1,5 +1,7 @@
 <?php
 
+
+
 $host="localhost";
 $user="rooy";
 $pass="";
@@ -39,21 +41,19 @@ function check_id(int $id,$host,$user,$pass,$db)
        return true;
     }
 }
-function create_account($username,$password,$email,$host,$user,$pass,$db)
+function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
 {   //returns $id if successful returns false otherwise
 
-    date_default_timezone_set('UTC');
-    $id=0;
-    //checks if id exists
-    while ($id=rand(10000 ,99999) && check_id($id,$host,$user,$pass,$db)) {
-        
-    }
 
     //connection
     $cn=mysqli_connect("$host","$user","$pass","$db")or die("Connection failed");
     
+    if ($image=='')
+    {
+            $image='default.png';
+    }
     //insertion
-    $req="INSERT into user values('$id','$username','$password','$email')  ";
+    $req="INSERT into client values('$id','$username','$email','$phone','$image')  ";
     $res=mysqli_query($cn,$req);
     mysqli_close($cn);
 
@@ -67,25 +67,146 @@ function create_account($username,$password,$email,$host,$user,$pass,$db)
     }
 
  }
- function create_profile($id,$host,$user,$pass,$db)
+ function create_user($email,$type,$password,$host,$user,$pass,$db)
  {
+    //returns the id used
     $cn=mysqli_connect("$host","$user","$pass","$db") or die("Connection failed");
-    change_image("default/images/default.png",$host,$user,$pass,$db,0);
-    mysqli_close($cn);
+
+    $req="INSERT into user values(NULL,'$email','$password','$type')";
+    $res=mysqli_query($cn,$req);
+     mysqli_close($cn);
+    if (mysqli_num_rows($res)==0) {
+        return false;
+    
+    }
+    else
+    {
+        $id=mysqli_insert_id($cn);
+       return $id;
+
+    }
+    
  }
- function change_image($adress,$host,$user,$pass,$db,$pos)
+  function create_resto($id,$name,$email,$phone,$facebook,$instagram,$whatsapp,$image,$url,$host,$user,$pass,$db,)
+ {
+    //returns the id is from the user
+    $cn=mysqli_connect("$host","$user","$pass","$db") or die("Connection failed");
+
+        if ($image=='')
+    {
+            $image='default.png';
+    }
+
+    $req="INSERT into restaurant values('$id','$name','$email','$phone','$facebook','$instagram','$$whatsapp','$image','$url')";
+    $res=mysqli_query($cn,$req);
+     mysqli_close($cn);
+    if (mysqli_num_rows($res)==0) {
+        return false;
+    
+    }
+    else
+    {
+        $id=mysqli_insert_id($cn);
+       return $id;
+
+    }
+    
+ }
+  function create_menu($id,$name,$image,$host,$user,$pass,$db)
+ {
+    //returns the id is from the resto
+    $cn=mysqli_connect("$host","$user","$pass","$db") or die("Connection failed");
+
+        if ($image=='')
+    {
+            $image='default.png';
+    }
+
+    $req="INSERT into menu values(NULL,'$id','$name','$image')";
+    $res=mysqli_query($cn,$req);
+     mysqli_close($cn);
+    if (mysqli_num_rows($res)==0) {
+        return false;
+    
+    }
+    else
+    {
+        $id=mysqli_insert_id($cn);
+       return $id;
+
+    }
+    
+ }
+  function create_item($id,$catigory,$name,$prix,$image,$host,$user,$pass,$db)
+ {
+    //returns the id is from the menu
+    $cn=mysqli_connect("$host","$user","$pass","$db") or die("Connection failed");
+
+        if ($image=='')
+    {
+            $image='default.png';
+    }
+
+    $req="INSERT into item values(NULL,'$id','$catigory','$name','$prix','$image')";
+    $res=mysqli_query($cn,$req);
+     mysqli_close($cn);
+    if (mysqli_num_rows($res)==0) {
+        return false;
+    
+    }
+    else
+    {
+        $id=mysqli_insert_id($cn);
+       return $id;
+
+    }
+    
+ }
+ function change_image($adress,$host,$user,$pass,$db,$pos,$tab,$id)
  {
     $cn=mysqli_connect("$host","$user","$pass","$db") or die("Connection failed");
-    switch ($db) {
+    $req='';
+    switch ($tab) {
         case 'catagory':
-            $req="INSERT into catagory value ";
-            break;
+        case 'post':
         
+            switch ($pos) {
+                case '0':
+                     return false;
+                    break;
+                case '1':
+                    
+                    $req="UPDATE '$tab' SET image1='$adress' where id='$id' ";
+                    break;
+                case '2':
+                    $req="UPDATE '$tab' SET image2='$adress' where id='$id' ";
+                    break;
+                case '3':
+                    $req="UPDATE '$tab' SET image3='$adress' where id='$id' ";
+                    break;
+                
+                default:
+                    return "Errer";
+                    
+            }
+            
+            break;
+
+        case 'restaurant':
+        case 'client':
+        case 'menu':
+             $req="UPDATE '$tab' SET image='$adress' where id='$id' ";
+
         default:
-            # code...
             break;
     }
    
-    
+    $res=mysqli_query($cn,$req);
     mysqli_close($cn);
+    if (mysqli_num_rows($res)==0) {
+        return false;
+    }else {
+        return true;
+    }
+    
  }

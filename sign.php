@@ -1,5 +1,6 @@
 
 <?php
+echo '<link rel="stylesheet" href="sing.css">';
 require("functions.php");
 //sign up
 if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["email"])&&isset($_POST["number"]))
@@ -25,13 +26,14 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["email"])
           <link rel="stylesheet" href="FoodConnect/css/global.css">
           </head>
           <body class="body" onload="background('."'url(css/img/background/wood.jpg)'".')">
-            <form action="/login.php" onsubmit="entry()" method="post" >
+            <form action="FoodConnect/login.php" onsubmit="entry()" method="post" >
             <fieldset class="window">
             <legend><h3>Account created successfully!</h3></legend>
             <div>
             
             <input type="text" value="'.$_POST["username"].'" name="username" readonly>
             <input type="text" value="'.$_POST["password"].'" name="password" readonly>
+            
             <input type="submit" value="login"  class="submit">
             </div>
             </fieldset>
@@ -85,6 +87,35 @@ function sign()
       </br>
       <input type="number" placeholder="Phone Number" id="number" name="number" >
       </br>
+      <label for="age">role:</label>
+      <select name="role" id="role" onchange="showItems()" >
+              <option value="client">client</option>
+              <option value="restourent">restourent</option>
+            </select>
+            <br>
+            <div id="restourentbox" style="display:none">
+            <input type="text" placeholder="restourent description" id="restourentname" name="restourentname"><br><br>
+            <input type="text" placeholder="restourent location" id="restourentlocation" name="restourentlocation"><br><br>
+  <input type="text" placeholder="restourent phone number" id="restourentnumber" name="restourentnumber"><br><br>
+  <input type="text" placeholder="restourent email" id="restourentemail" name="restourentemail">   <br><br>       
+  
+  <input type="text" placeholder="facebook page url" id="restourentopening" name="restourentopening"><br><br>
+  <input type="text" placeholder="instagrame url" id="restourentclosing" name="restourentclosing"><br><br>
+  <input type="text" placeholder="whatsapp url" id="restourentclosing" name="restourentclosing"><br>
+  </div>    
+  <script>
+function showItems() {
+  let value = document.getElementById("role").value;
+
+  document.getElementById("restourentbox").style.display = "none";
+
+  if (value === "restourent") {
+    document.getElementById("restourentbox").style.display = "block";
+  } 
+    
+}
+</script>
+
       <input type="submit"  onsubmit="return test()" value="sign in" class="submit">
       </div>
       </fieldset>
