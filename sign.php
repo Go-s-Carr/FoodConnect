@@ -1,6 +1,6 @@
 
 <?php
-echo '<link rel="stylesheet" href="sing.css">';
+echo '<link rel="stylesheet" href="FoodConnect/css/sing.css">';
 require("functions.php");
 //sign up
 if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["email"])&&isset($_POST["number"]))
