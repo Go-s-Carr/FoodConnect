@@ -26,7 +26,7 @@ if ($_SESSION['type']=='restaurant')
                         <td align="center">
                             
                             <!-- Header Section -->
-                            <h1> esm resto bl php ml session</h1>
+                            
                             <hr width="80%">
                             <br>
                             
@@ -41,10 +41,7 @@ if ($_SESSION['type']=='restaurant')
                             
                             <!-- Bio Section -->
                             <h3>description</h3>
-                            <p>
-                                aml description fl bd bch tajm tejbdha zede bl session(bl mo5tasar el session t3adi biha id ta user wl md te3o ijbed kolchy test7a9o)
-                                resto mechewi 6 njom aban lablebi 3and zarga. 🌉
-                            </p>
+                           
                             
                             <br>
                             <hr width="80%">
@@ -53,9 +50,9 @@ if ($_SESSION['type']=='restaurant')
                                 <legend><h3>🍽️ Menu Highlights</h3></legend>
                                 <ul>
                                     <li>Here’s a simple restaurant menu in plain text format that you can easily customize:
-====================================
-        THE GOLDEN SPOON
-====================================
+====================================<br>
+        THE GOLDEN SPOON<br>
+====================================<br>
 
 🍽 STARTERS
 - Tomato Basil Soup .......... 8.50<br>
