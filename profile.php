@@ -31,7 +31,7 @@ if ($_SESSION['type']=='restaurant')
                             <br>
                             
                             <!-- Avatar / Profile Image (using a nice SVG avatar - pure HTML) -->
-                            <img src=" "FoodConnect/data/images/".$_SESSION["image"]"
+                            <img src=" FoodConnect/data/images/default.png"
                                  alt="Profile Avatar"
                                  width="150"
                                  height="150"
@@ -52,7 +52,45 @@ if ($_SESSION['type']=='restaurant')
                             <fieldset>
                                 <legend><h3>🍽️ Menu Highlights</h3></legend>
                                 <ul>
-                                    <li><?php echo "bd te3ek 5arj laswem w howa chnwe ybi3"; ?></li>
+                                    <li>Here’s a simple restaurant menu in plain text format that you can easily customize:
+====================================
+        THE GOLDEN SPOON
+====================================
+
+🍽 STARTERS
+- Tomato Basil Soup .......... 8.50
+- Garlic Bread Basket ........ 6.00
+- Crispy Calamari ............ 12.00
+
+🥗 SALADS
+- Caesar Salad ............... 10.00
+- Greek Salad ................ 9.50
+- Quinoa & Avocado Bowl ...... 11.50
+
+🍝 MAIN COURSES
+- Spaghetti Carbonara ........ 14.00
+- Grilled Salmon ............. 18.50
+- Chicken Alfredo ............ 15.00
+- Veggie Stir-Fry ............ 13.00
+
+🍰 DESSERTS
+- Chocolate Lava Cake ........ 7.50
+- Classic Cheesecake ......... 7.00
+- Fresh Fruit Platter ........ 6.50
+
+🥤 BEVERAGES
+- Fresh Orange Juice ......... 4.50
+- Iced Tea ................... 3.50
+- Espresso ................... 2.50
+- Mineral Water .............. 2.00
+
+====================================
+Thank you for dining with us!
+====================================
+
+If you’d like, I can also make you a fancier version with ASCII art or a print-ready PDF menu.
+Do you want me to create a stylish text menu with borders and icons?
+</li>
                                 </ul>
                             </fieldset>
                             <br>
