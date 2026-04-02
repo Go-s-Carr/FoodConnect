@@ -62,7 +62,7 @@ echo '<!DOCTYPE html>
 </head>
 <body class="body">
     <form action="FoodConnect/profile.php" method="post">
-        <fieldset class="window">
+        <fieldset class="window"> 
             <legend><h3>Login</h3></legend>
             <div>
                 <input type="text" placeholder="Email" id="email" name="email">
