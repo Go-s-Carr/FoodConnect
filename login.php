@@ -1,5 +1,5 @@
 <?php
-include("sql_functions.php");
+include_once("sql_functions.php");
 
 
 
@@ -61,7 +61,7 @@ echo '<!DOCTYPE html>
     <link rel="stylesheet" href="FoodConnect/css/global.css">
 </head>
 <body class="body">
-    <form action="FoodConnect/login.php" method="post">
+    <form action="FoodConnect/initialize.php" method="post">
         <fieldset class="window">
             <legend><h3>Login</h3></legend>
             <div>
