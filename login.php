@@ -7,7 +7,7 @@ if (isset($_POST['email'])&&isset($_POST['password']))
 {
     $email=$_POST['email'];
      $password=$_POST['password'];
-   $res= check_user($email,$password,'localhost','root','','foodconnect');
+   $res= check_user($email,$password,'localhost','admin',"TOnFlores02:10.",'foodconnect');
    if ($res!=false) {
     session_start();
     $row=mysqli_fetch_assoc($res);
@@ -16,7 +16,7 @@ if (isset($_POST['email'])&&isset($_POST['password']))
 
     if ($_SESSION['type']=='restaurant')
     {
-        $res=check_client( $_SESSION['id'],'localhost','root','','foodconnect');
+        $res=check_client( $_SESSION['id'],'localhost','admin',"TOnFlores02:10.",'foodconnect');
         $row-mysqli_fetch_assoc($res);
         $_SESSION['name']=$row['name'];
         $_SESSION['email']=$row['email'];
@@ -24,7 +24,7 @@ if (isset($_POST['email'])&&isset($_POST['password']))
         $_SESSION['image']=$row['image'];
        header("Location: profile.php");
     }else {
-        $res=check_resto( $_SESSION['id'],'localhost','root','','foodconnect');
+        $res=check_resto( $_SESSION['id'],'localhost','admin',"TOnFlores02:10.",'foodconnect');
         $row-mysqli_fetch_assoc($res);
         $_SESSION['name']=$row['name'];
         $_SESSION['email']=$row['email'];
@@ -61,7 +61,7 @@ echo '<!DOCTYPE html>
     <link rel="stylesheet" href="FoodConnect/css/global.css">
 </head>
 <body class="body">
-    <form action="FoodConnect/initialize.php" method="post">
+    <form action="FoodConnect/profile.php" method="post">
         <fieldset class="window">
             <legend><h3>Login</h3></legend>
             <div>
