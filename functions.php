@@ -70,3 +70,14 @@ function date_calc($date1,$date2,$return)
   }
 }
 
+function checktype($FILE)
+{
+$res= strtolower(pathinfo(basename($FILE)));
+return($res);
+}
+
+function cut($str,$target)
+{
+   $pos= strpos($str,$target);
+   return(substr($str,$pos,strlen($str)));
+} 

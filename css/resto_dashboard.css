@@ -1,0 +1,325 @@
+/* ===== NAVIGATION BAR STYLING ===== */
+.nav {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a2632 100%);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+}
+
+/* Navigation Links */
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+/* Hover effect for nav links */
+.nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Active link styling (for current page) */
+.nav a:active {
+    transform: translateY(0);
+}
+
+/* Underline effect on hover */
+.nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav a:hover::before {
+    width: 80%;
+}
+
+/* Active state for current page (add class 'active' to the current link) */
+.nav a.active {
+    background: rgba(102, 126, 234, 0.3);
+}
+
+.nav a.active::before {
+    width: 80%;
+}
+
+/* ===== IFRAME STYLING ===== */
+iframe[name="resto_dash"] {
+    width: 100%;
+    height: calc(100vh - 60px);
+    border: none;
+    background: #f5f7fa;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* Iframe loading state */
+iframe[name="resto_dash"]:loading {
+    opacity: 0.7;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media screen and (max-width: 768px) {
+    .nav {
+        gap: 2px;
+        padding: 5px 0;
+    }
+    
+    .nav a {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    iframe[name="resto_dash"] {
+        height: calc(100vh - 50px);
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .nav {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    
+    .nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav a:last-child {
+        border-bottom: none;
+    }
+    
+    .nav a::before {
+        bottom: 5px;
+    }
+    
+    iframe[name="resto_dash"] {
+        height: calc(100vh - 200px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav a {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    iframe[name="resto_dash"] {
+        height: calc(100vh - 180px);
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav {
+    animation: slideDown 0.5s ease-out;
+}
+
+/* ===== IFRAME CONTENT STYLING (affects content inside iframe) ===== */
+iframe[name="resto_dash"] body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== ADDITIONAL POLISH ===== */
+/* Body styling for pages that use this navigation */
+body:has(.nav) {
+    margin: 0;
+    padding: 0;
+    background: #f5f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Scrollbar styling for the overall page */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* ===== DROPDOWN MENU SUPPORT (if needed) ===== */
+.nav .dropdown {
+    position: relative;
+}
+
+.nav .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #2c3e50;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.nav .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.nav .dropdown-content a {
+    display: block;
+    padding: 12px 20px;
+    text-transform: none;
+    font-size: 14px;
+}
+
+.nav .dropdown-content a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== BREADCRUMB STYLING (optional) ===== */
+.breadcrumb {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    font-size: 14px;
+    color: #666;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.breadcrumb a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* ===== LOADING INDICATOR FOR IFRAME ===== */
+.iframe-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none;
+}
+
+.iframe-loading.active {
+    display: block;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .nav {
+        display: none;
+    }
+    
+    iframe[name="resto_dash"] {
+        height: auto;
+        display: block;
+    }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+    .nav {
+        background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+    }
+    
+    body:has(.nav) {
+        background: #1a1a2e;
+    }
+    
+    iframe[name="resto_dash"] {
+        background: #1a1a2e;
+    }
+}
+
+/* ===== TOOLTIP STYLES (optional) ===== */
+.nav a[title] {
+    position: relative;
+}
+
+.nav a[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1002;
+    pointer-events: none;
+}
+
+/* ===== FOCUS STYLES FOR ACCESSIBILITY ===== */
+.nav a:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+    background: rgba(102, 126, 234, 0.2);
+}
+
+iframe:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}

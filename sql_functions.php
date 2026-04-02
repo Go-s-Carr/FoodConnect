@@ -39,7 +39,7 @@ function check_email($email,$host,$user,$pass,$db)
     }else 
     {
         mysqli_close($cn);
-       return $res;
+       return true;
     }
     
 }   

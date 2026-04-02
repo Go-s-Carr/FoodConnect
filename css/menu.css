@@ -1,0 +1,347 @@
+/* ===== CONTAINER STYLING ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+/* ===== ITEMS GRID ===== */
+.items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* ===== INDIVIDUAL ITEM CARD ===== */
+.item {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Add decorative element to each item */
+.item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+}
+
+/* ===== ITEM HEADING ===== */
+.item h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    position: relative;
+    display: inline-block;
+}
+
+.item h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 3px;
+}
+
+/* ===== ITEM DESCRIPTION ===== */
+.item p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 14px;
+    margin: 15px 0;
+    min-height: 60px;
+}
+
+/* ===== EDIT/ADD BUTTON ===== */
+.item button.edit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.item button.edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.item button.edit:active {
+    transform: translateY(0);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add staggered animation delay for each item */
+.item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.item:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .items {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .item {
+        padding: 20px;
+    }
+    
+    .item h2 {
+        font-size: 20px;
+    }
+    
+    .item p {
+        font-size: 13px;
+        min-height: 50px;
+    }
+    
+    .item button.edit {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px 10px;
+    }
+    
+    .items {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .item {
+        padding: 18px;
+    }
+    
+    .item h2 {
+        font-size: 18px;
+    }
+    
+    .item p {
+        font-size: 12px;
+        min-height: auto;
+    }
+    
+    .item button.edit {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+/* ===== HOVER EFFECTS FOR ITEMS ===== */
+.item {
+    position: relative;
+}
+
+/* Add icon to each item category */
+.item h2:before {
+    font-family: "Font Awesome 6 Free";
+    margin-right: 10px;
+    font-weight: 900;
+}
+
+/* Different icons for different categories (if using Font Awesome) */
+.item:nth-child(1) h2:before {
+    content: "🍔 ";
+    font-family: inherit;
+}
+
+.item:nth-child(2) h2:before {
+    content: "🍝 ";
+    font-family: inherit;
+}
+
+.item:nth-child(3) h2:before {
+    content: "🥤 ";
+    font-family: inherit;
+}
+
+.item:nth-child(4) h2:before {
+    content: "🍰 ";
+    font-family: inherit;
+}
+
+/* ===== BUTTON LOADING STATE ===== */
+.item button.edit.loading {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+}
+
+.item button.edit.loading::after {
+    content: "...";
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% {
+        content: ".";
+    }
+    40% {
+        content: "..";
+    }
+    60%, 100% {
+        content: "...";
+    }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* ===== ADDITIONAL STYLES FOR DYNAMIC CONTENT ===== */
+/* Style for items when they have images */
+.item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* Price tag styling (if added later) */
+.item .price {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #667eea;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Category badge */
+.item .category-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(102, 126, 234, 0.9);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* ===== DARK MODE SUPPORT (optional) ===== */
+@media (prefers-color-scheme: dark) {
+    .container {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+    
+    .item {
+        background: #2c3e50;
+    }
+    
+    .item h2 {
+        color: #ecf0f1;
+    }
+    
+    .item p {
+        color: #bdc3c7;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .container {
+        background: white;
+        padding: 0;
+    }
+    
+    .item {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .item button.edit {
+        display: none;
+    }
+}
