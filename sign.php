@@ -23,56 +23,57 @@ if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["telephone"]
        $passw=$_POST['password'];
         if (!check_email($_POST['email'],$host,$user,$pass,$db)) 
         {
-         $id=create_user($_POST['email'],$_POST['password'],$_POST['type'],$host,$user,$pass,$db);
-         $image='';
-         session_start();
-         $_SESSION['email']=$_POST['email'];
-          $_SESSION['password']=$_POST['password'];
-           $_SESSION['type']=$_POST['type'];
-         if ($_POST['type']=='client')
-        {
+            $id=create_user($_POST['email'],$_POST['password'],$_POST['type'],$host,$user,$pass,$db);
+            $image='';
+            session_start();
+            $_SESSION['email']=$_POST['email'];
+            $_SESSION['password']=$_POST['password'];
+            $_SESSION['type']=$_POST['type'];
+            if ($_POST['type']=='client')
+            {
 
-            create_client($id,$_POST['name'],$email,$_POST["telephone"],$image,$host,$user,$pass,$db);
-         }else {
-           create_resto($id,$_POST['name'],$email,$_POST["telephone"],$_POST["facebook"],$_POST["instagram"],$_POST["whatsapp"],$_POST["url"],$image,$host,$user,$pass,$db);
-           create_menu($id,$_POST['name'],'',$host,$user,$pass,$db);
-         }
-         if (isset($_FILES["image"]))
-{
-    foreach( $_FILES as $x =>$y){
-       
-        $name= (basename($_FILES[$x]["name"]));
-        $target="../FoodConnect/data/images".$x."";
-        $type= substr($name,strpos($name,"."),strlen($name));
-        $name=substr($name,0,strpos($name,"."));
-        $target=$target.$name;
-        $num=0;
-    
-       while(file_exists($target.$num.$type)) 
-        {
-            $num++;
-        }
-        
-        $target=$target.$num.$type;
-          if (move_uploaded_file($_FILES["image"]["tmp_name"],$target)) 
-        {
-    
-            
-            if ($_POST['type']=='client') {
-               change_image($target,$host,$user,$pass,$db,'','client',$id);
+                create_client($id,$_POST['name'],$email,$_POST["telephone"],$image,$host,$user,$pass,$db);
             }else {
-                change_image($target,$host,$user,$pass,$db,'','restaurant',$id);
+            create_resto($id,$_POST['name'],$email,$_POST["telephone"],$_POST["facebook"],$_POST["instagram"],$_POST["whatsapp"],$_POST["url"],$image,$host,$user,$pass,$db);
+            create_menu($id,$_POST['name'],'',$host,$user,$pass,$db);
             }
-        } 
+            if (isset($_FILES["image"]))
+        {
+        foreach( $_FILES as $x =>$y)
+        {
         
+            $name= (basename($_FILES[$x]["name"]));
+            $target="../FoodConnect/data/images".$x."";
+            $type= substr($name,strpos($name,"."),strlen($name));
+            $name=substr($name,0,strpos($name,"."));
+            $target=$target.$name;
+            $num=0;
         
+        while(file_exists($target.$num.$type)) 
+            {
+                $num++;
+            }
+            
+            $target=$target.$num.$type;
+            if (move_uploaded_file($_FILES["image"]["tmp_name"],$target)) 
+            {
+        
+                
+                if ($_POST['type']=='client') {
+                change_image($target,$host,$user,$pass,$db,'','client',$id);
+                }else {
+                    change_image($target,$host,$user,$pass,$db,'','restaurant',$id);
+                }
+            } 
+            
+            
             
     
         }
 }
     header("Location:login.php");
           
-        }
+    }
         //account exists
         else
         {
@@ -146,7 +147,7 @@ function showItems() {
     
 }
 </script>
-        <a href="FoodConnect/login.php" class="herf">Got an account? login!</a>
+        <a href="../FoodConnect/login.php" class="herf">Got an account? login!</a>
       <input type="submit"  onsubmit="return test()" value="sign in" class="submit">
       </div>
       
