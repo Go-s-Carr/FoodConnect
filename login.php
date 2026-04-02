@@ -57,7 +57,7 @@ echo'  <!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>';
    
-    echo '<link rel="stylesheet" href="sing.css">
+    echo '<link rel="stylesheet" href="FoodConnect/css/sing.css">
     <link rel="stylesheet" href="FoodConnect/css/global.css">
   
     </head>
@@ -74,7 +74,9 @@ echo'  <!DOCTYPE html>
       </div>
       </fieldset>
       </form>
-      </body>';
+      </body>
+      
+      </html>';
 }
 
    
