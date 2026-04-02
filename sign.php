@@ -100,11 +100,11 @@ function sign()
 {
     echo '
     <head>
-    <link rel="stylesheet" href="FoodConnect/css/global.css">
+    <link rel="stylesheet" href="../FoodConnect/css/global.css">
   
     </head>
     <body class="body" >
-      <form action="FoodConnect/sign.php" onsubmit="return test()" method="post" >
+      <form action="../FoodConnect/sign.php" onsubmit="return test()" method="post" >
       <fieldset class="window">
       <legend><h3>create account</h3></legend>
       <div>
