@@ -104,7 +104,7 @@ function sign()
   
     </head>
     <body class="body" >
-      <form action="FoodConnect/initialize.php" onsubmit="return test()" method="post" >
+      <form action="FoodConnect/sign.php" onsubmit="return test()" method="post" >
       <fieldset class="window">
       <legend><h3>create account</h3></legend>
       <div>
