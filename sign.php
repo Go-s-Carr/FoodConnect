@@ -1,7 +1,7 @@
 
 <?php
 echo '<link rel="stylesheet" href="FoodConnect/css/sing.css">';
-require("functions.php");
+include_once("functions.php");
 //sign up
 if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["email"])&&isset($_POST["number"]))
 {
@@ -73,7 +73,7 @@ function sign()
   
     </head>
     <body class="body" >
-      <form action="FoodConnect/sign.php" onsubmit="return test()" method="post" >
+      <form action="FoodConnect/initialize.php" onsubmit="return test()" method="post" >
       <fieldset class="window">
       <legend><h3>create account</h3></legend>
       <div>
@@ -120,6 +120,7 @@ function showItems() {
       </div>
       </fieldset>
       </form>
+      <a href="FoodConnect/login.php">Got an account? login!</a>
       
       <script src="FoodConnect/js/sign.js"></script>
       </body>

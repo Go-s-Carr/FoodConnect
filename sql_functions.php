@@ -3,44 +3,85 @@
 
 
 $host="localhost";
-$user="rooy";
-$pass="";
-$db="account";
+$user="admin";
+$pass="TOnFlores02:10.";
+$db="foodconnect";
+//,'localhost','root','','foodconnect'
+include_once("functions.php");
 
-include("functions.php");
-function check_user(string $username,$host,$user,$pass,$db)
+
+//selection functions
+function check_user($email,$password,$host,$user,$pass,$db)
 {
     //sees if username exists in table if yes return true else return false
     $cn=mysqli_connect("$host","$user","$pass","$db") or die("connection failed");
-    $req="SELECT username from user WHERE username ='$username'";
+    $req="SELECT id ,type from user WHERE password ='$password' AND email ='$email' ";
     $res=mysqli_query($cn,$req);
-    mysqli_close($cn);
-
-    if (mysqli_num_rows($res)==0)
-    {
+  if (mysqli_num_rows($res)==0) {
+        mysqli_close($cn);
         return false;
     }else 
     {
-       return true;
+        mysqli_close($cn);
+       return $res;
     }
     
 }   
-function check_id(int $id,$host,$user,$pass,$db)
+function check_email($email,$host,$user,$pass,$db)
 {
-    //sees if id exists in table, if yes return true otherwise false
+    //sees if username exists in table if yes return true else return false
     $cn=mysqli_connect("$host","$user","$pass","$db") or die("connection failed");
-    $req="SELECT id from user WHERE id ='$id'";
+    $req="SELECT id ,type from user WHERE email ='$email' ";
     $res=mysqli_query($cn,$req);
-    mysqli_close($cn);
-
-    if (mysqli_num_rows($res)==0)
-    {
+  if (mysqli_num_rows($res)==0) {
+        mysqli_close($cn);
         return false;
     }else 
     {
-       return true;
+        mysqli_close($cn);
+       return $res;
+    }
+    
+}   
+function check_resto($id,$host,$user,$pass,$db)
+{
+    //sees if id exists in table, if yes return true otherwise false
+    $cn=mysqli_connect("$host","$user","$pass","$db") or die("connection failed");
+    $req="SELECT * from restaurant WHERE id ='$id'";
+    $res=mysqli_query($cn,$req);
+
+
+    if (mysqli_num_rows($res)==0) {
+        mysqli_close($cn);
+        return false;
+    }else 
+    {
+        mysqli_close($cn);
+       return $res;
     }
 }
+function check_client($id,$host,$user,$pass,$db)
+{
+    //sees if id exists in table, if yes return true otherwise false
+    $cn=mysqli_connect("$host","$user","$pass","$db") or die("connection failed");
+    $req="SELECT * from client WHERE id ='$id'";
+    $res=mysqli_query($cn,$req);
+
+
+    if (mysqli_num_rows($res)==0) {
+        mysqli_close($cn);
+        return false;
+    }else 
+    {
+        mysqli_close($cn);
+       return $res;
+    }
+}
+
+
+
+
+//Creation functions
 function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
 {   //returns $id if successful returns false otherwise
 
@@ -55,11 +96,8 @@ function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
     //insertion
     $req="INSERT into client values('$id','$username','$email','$phone','$image')  ";
     $res=mysqli_query($cn,$req);
-    mysqli_close($cn);
-
-    //return check
-    if (mysqli_num_rows($res)==0) 
-    {
+   if ($res===false) {
+        mysqli_close($cn);
         return false;
     }
     else {
@@ -74,20 +112,21 @@ function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
 
     $req="INSERT into user values(NULL,'$email','$password','$type')";
     $res=mysqli_query($cn,$req);
-     mysqli_close($cn);
-    if (mysqli_num_rows($res)==0) {
+   
+     if ($res===false) {
+        mysqli_close($cn);
         return false;
-    
     }
     else
     {
         $id=mysqli_insert_id($cn);
+        mysqli_close($cn);
        return $id;
 
     }
     
  }
-  function create_resto($id,$name,$email,$phone,$facebook,$instagram,$whatsapp,$image,$url,$host,$user,$pass,$db,)
+  function create_resto($id,$name,$email,$phone,$facebook,$instagram,$whatsapp,$image,$url,$host,$user,$pass,$db)
  {
     //returns the id is from the user
     $cn=mysqli_connect("$host","$user","$pass","$db") or die("Connection failed");
@@ -97,16 +136,16 @@ function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
             $image='default.png';
     }
 
-    $req="INSERT into restaurant values('$id','$name','$email','$phone','$facebook','$instagram','$$whatsapp','$image','$url')";
+    $req="INSERT into restaurant values('$id','$name','$email','$phone','$facebook','$instagram','$whatsapp','$image','$url')";
     $res=mysqli_query($cn,$req);
-     mysqli_close($cn);
-    if (mysqli_num_rows($res)==0) {
+     if ($res===false) {
+        mysqli_close($cn);
         return false;
-    
     }
     else
     {
         $id=mysqli_insert_id($cn);
+          mysqli_close($cn);
        return $id;
 
     }
@@ -124,14 +163,15 @@ function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
 
     $req="INSERT into menu values(NULL,'$id','$name','$image')";
     $res=mysqli_query($cn,$req);
-     mysqli_close($cn);
-    if (mysqli_num_rows($res)==0) {
+   
+    if ($res===false) {
+        mysqli_close($cn);
         return false;
-    
     }
     else
     {
         $id=mysqli_insert_id($cn);
+        mysqli_close($cn);
        return $id;
 
     }
@@ -149,14 +189,17 @@ function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
 
     $req="INSERT into item values(NULL,'$id','$catigory','$name','$prix','$image')";
     $res=mysqli_query($cn,$req);
-     mysqli_close($cn);
-    if (mysqli_num_rows($res)==0) {
+     
+    if ($res===false) { 
+        mysqli_close($cn);
         return false;
-    
+       
     }
     else
     {
+
         $id=mysqli_insert_id($cn);
+        mysqli_close($cn);
        return $id;
 
     }
@@ -176,13 +219,13 @@ function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
                     break;
                 case '1':
                     
-                    $req="UPDATE '$tab' SET image1='$adress' where id='$id' ";
+                    $req="UPDATE $tab SET image1='$adress' where id='$id' ";
                     break;
                 case '2':
-                    $req="UPDATE '$tab' SET image2='$adress' where id='$id' ";
+                    $req="UPDATE $tab SET image2='$adress' where id='$id' ";
                     break;
                 case '3':
-                    $req="UPDATE '$tab' SET image3='$adress' where id='$id' ";
+                    $req="UPDATE $tab SET image3='$adress' where id='$id' ";
                     break;
                 
                 default:
@@ -195,15 +238,16 @@ function create_client($id,$username,$email,$phone,$image,$host,$user,$pass,$db)
         case 'restaurant':
         case 'client':
         case 'menu':
-             $req="UPDATE '$tab' SET image='$adress' where id='$id' ";
-
+             $req="UPDATE $tab SET image='$adress' where id='$id' ";
+             break;
         default:
             break;
     }
    
     $res=mysqli_query($cn,$req);
     mysqli_close($cn);
-    if (mysqli_num_rows($res)==0) {
+    if ($res===false) {
+        mysqli_close($cn);
         return false;
     }else {
         return true;
