@@ -51,32 +51,30 @@ else
     }
 function login()
 {
-echo'  <!DOCTYPE html>
+echo '<!DOCTYPE html>
 <html lang="en">
- <head> <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>';
-   
-    echo '<link rel="stylesheet" href="FoodConnect/css/sing.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="FoodConnect/css/sing.css">
     <link rel="stylesheet" href="FoodConnect/css/global.css">
-  
-    </head>
-    <body class="body" >
-      <form action="FoodConnect/login.php" onsubmit="return test()" method="post" >
-      <fieldset class="window">
-      <legend><h3>Login</h3></legend>
-      <div>
-      <input type="text" placeholder="Email" id="email" name="email">
-      </br>
-      <input type="password" placeholder="password(8charecters)" id="password" name="password">
-      </br>
-      <button type="submit" placeholder="login"  name="login">Login</button>
-      </div>
-      </fieldset>
-      </form>
-      </body>
-      
-      </html>';
+</head>
+<body class="body">
+    <form action="FoodConnect/login.php" method="post">
+        <fieldset class="window">
+            <legend><h3>Login</h3></legend>
+            <div>
+                <input type="text" placeholder="Email" id="email" name="email">
+                <br>
+                <input type="password" placeholder="password (8 characters)" id="password" name="password">
+                <br>
+                <button type="submit" name="login">Login</button>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>';
 }
 
    
