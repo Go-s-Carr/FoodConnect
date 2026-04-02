@@ -4,7 +4,7 @@ $host="localhost";
 $user="admin";
 $pass="TOnFlores02:10.";
 $db="foodconnect";
-echo '<link rel="stylesheet" href="FoodConnect/css/sing.css">';
+echo '<link rel="stylesheet" href="../FoodConnect/css/sing.css">';
 include_once("functions.php");
 //sign up
 if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["email"])&&isset($_POST["number"])&&isset($_POST["confirme"]))
