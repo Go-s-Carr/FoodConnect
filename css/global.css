@@ -23,6 +23,7 @@ body{
 form
 {
     border: rgba(245, 245, 245, 0.499) solid 2px;
+    border-radius: 10px;
     box-shadow: grey 2px;
     position: absolute;
     top: 50%;
