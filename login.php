@@ -57,8 +57,8 @@ echo '<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="FoodConnect/css/sing.css">
-    <link rel="stylesheet" href="FoodConnect/css/global.css">
+    <link rel="stylesheet" href="../FoodConnect/css/sing.css">
+    <link rel="stylesheet" href="../FoodConnect/css/global.css">
 </head>
 <body class="body">
     <form action="FoodConnect/profile.php" method="post">
