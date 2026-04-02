@@ -77,7 +77,7 @@ function sign()
       <fieldset class="window">
       <legend><h3>create account</h3></legend>
       <div>
-      <input type="text" placeholder="Username" id="username" name="username">
+      <input type="text" placeholder="Username" id="username" name="name">
       </br>
       <input type="password" placeholder="password(8charecters)" id="password" name="password">
       </br>
@@ -85,8 +85,9 @@ function sign()
       </br>
       <input type="text" placeholder="Email" id="email" name="email" >
       </br>
-      <input type="number" placeholder="Phone Number" id="number" name="number" >
+      <input type="number" placeholder="Phone Number" id="number" name="telephone" >
       </br>
+      <input type="file" placeholder="profile image" id="image" name="image" accept="image/*"><br><br>
       <label for="age">role:</label>
       <select name="role" id="role" onchange="showItems()" >
               <option value="client">client</option>
@@ -94,14 +95,15 @@ function sign()
             </select>
             <br>
             <div id="restourentbox" style="display:none">
-            <input type="text" placeholder="restourent description" id="restourentname" name="restourentname"><br><br>
-            <input type="text" placeholder="restourent location" id="restourentlocation" name="restourentlocation"><br><br>
+           <br><br>
+            
   <input type="text" placeholder="restourent phone number" id="restourentnumber" name="restourentnumber"><br><br>
   <input type="text" placeholder="restourent email" id="restourentemail" name="restourentemail">   <br><br>       
   
-  <input type="text" placeholder="facebook page url" id="restourentopening" name="restourentopening"><br><br>
-  <input type="text" placeholder="instagrame url" id="restourentclosing" name="restourentclosing"><br><br>
-  <input type="text" placeholder="whatsapp url" id="restourentclosing" name="restourentclosing"><br>
+  <input type="text" placeholder="facebook page url" id="facebook" name="facebook"><br><br>
+  <input type="text" placeholder="instagrame url" id="instagram" name="instagram"><br><br>
+  <input type="text" placeholder="whatsapp url" id="whatsapp" name="whatsapp"><br>
+   
   </div>    
   <script>
 function showItems() {

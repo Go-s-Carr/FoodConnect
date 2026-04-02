@@ -61,7 +61,7 @@ echo '<!DOCTYPE html>
     <link rel="stylesheet" href="../FoodConnect/css/global.css">
 </head>
 <body class="body">
-    <form action="FoodConnect/profile.php" method="post">
+    <form action="../FoodConnect/profile.php" method="post">
         <fieldset class="window"> 
             <legend><h3>Login</h3></legend>
             <div>
