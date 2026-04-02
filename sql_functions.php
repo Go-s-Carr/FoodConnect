@@ -31,8 +31,9 @@ function check_email($email,$host,$user,$pass,$db)
 {
     //sees if username exists in table if yes return true else return false
     $cn=mysqli_connect("$host","$user","$pass","$db") or die("connection failed");
-    $req="SELECT id ,type from user WHERE email ='$email' ";
+    $req="SELECT id  from user WHERE email ='$email' ";
     $res=mysqli_query($cn,$req);
+    echo $res;
   if (mysqli_num_rows($res)==0) {
         mysqli_close($cn);
         return false;
