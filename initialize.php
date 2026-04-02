@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "admin";
 $pass = "TOnFlores02:10.";
-$db   = "account";
+$db   = "foodconnect";
 
 // Create connection (without database)
 $conn = new mysqli($host, $user, $pass);
