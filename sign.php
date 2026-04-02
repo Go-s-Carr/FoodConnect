@@ -115,15 +115,17 @@ function showItems() {
     
 }
 </script>
-
+        <a href="FoodConnect/login.php" class="herf">Got an account? login!</a>
       <input type="submit"  onsubmit="return test()" value="sign in" class="submit">
       </div>
+      <a href="FoodConnect/login.php" class="herf">Got an account? login!</a>
       </fieldset>
+      <a href="FoodConnect/login.php" class="herf">Got an account? login!</a>
       </form>
       
       
       <script src="FoodConnect/js/sign.js"></script>
-      <a href="FoodConnect/login.php" class="submit">Got an account? login!</a>
+      
       </body>
     ';
 }
