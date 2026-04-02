@@ -58,7 +58,7 @@ echo '<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../FoodConnect/css/sing.css">
-    <link rel="stylesheet" href="../FoodConnect/css/global.css">
+   
 </head>
 <body class="body">
     <form action="../FoodConnect/profile.php" method="post">
@@ -72,6 +72,8 @@ echo '<!DOCTYPE html>
                 <a href="../FoodConnect/sign.php" class="herf">no account? sign up!</a>
                  <br>
                 <button type="submit" name="login">Login</button>
+                 <br>
+                <a href="../FoodConnect/resto_dashborard.php" class="herf">see the dashboard</a>
             </div>
         </fieldset>
     </form>

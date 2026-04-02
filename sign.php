@@ -116,7 +116,7 @@ function sign()
 {
     echo '
     <head>
-    <link rel="stylesheet" href="../FoodConnect/css/global.css">
+    
   
     </head>
     <body class="body" >
