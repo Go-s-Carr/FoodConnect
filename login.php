@@ -69,7 +69,7 @@ echo '<!DOCTYPE html>
                 <br>
                 <input type="password" placeholder="password (8 characters)" id="password" name="password">
                 <br>
-                <a href="../FoodConnect/login.php" class="herf">Got an account? login!</a>
+                <a href="../FoodConnect/sign.php" class="herf">no account? sign up!</a>
                  <br>
                 <button type="submit" name="login">Login</button>
             </div>
