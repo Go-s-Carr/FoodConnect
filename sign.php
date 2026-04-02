@@ -118,9 +118,9 @@ function showItems() {
         <a href="FoodConnect/login.php" class="herf">Got an account? login!</a>
       <input type="submit"  onsubmit="return test()" value="sign in" class="submit">
       </div>
-      <a href="FoodConnect/login.php" class="herf">Got an account? login!</a>
+      
       </fieldset>
-      <a href="FoodConnect/login.php" class="herf">Got an account? login!</a>
+      
       </form>
       
       
