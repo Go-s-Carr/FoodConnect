@@ -56,7 +56,7 @@ echo'   <head>
   
     </head>
     <body class="body" >
-      <form action="FoodConnect/initialize.php" onsubmit="return test()" method="post" >
+      <form action="FoodConnect/login.php" onsubmit="return test()" method="post" >
       <fieldset class="window">
       <legend><h3>Login</h3></legend>
       <div>
