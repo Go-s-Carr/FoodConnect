@@ -73,7 +73,7 @@ echo '<!DOCTYPE html>
                  <br>
                 <button type="submit" name="login">Login</button>
                  <br>
-                <a href="../FoodConnect/resto_dashborard.php" class="herf">see the dashboard</a>
+                <a href="../FoodConnect/resto_dashboard.php" class="herf">see the dashboard</a>
             </div>
         </fieldset>
     </form>
