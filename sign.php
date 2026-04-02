@@ -7,14 +7,14 @@ $db="foodconnect";
 echo '<link rel="stylesheet" href="../FoodConnect/css/sing.css">';
 include_once("functions.php");
 //sign up
-if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["email"])&&isset($_POST["number"])&&isset($_POST["confirme"]))
+if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["telephone"])&&isset($_POST["confirme"]))
 {
  
  
   
 
 
-  if (strlen($_POST['email'])>=8&&strlen($_POST["password"])<=255&&strlen($_POST["password"])>=8&&strlen($_POST["password"])<=255&&$_POST["password"]==$_POST["confirme"]&&email_check($_POST['email'])&&strlen($post["number"])==8)
+  if (strlen($_POST['email'])>=8&&strlen($_POST["password"])<=255&&strlen($_POST["password"])>=8&&strlen($_POST["password"])<=255&&$_POST["password"]==$_POST["confirme"]&&email_check($_POST['email'])&&strlen($post["telephone"])==8)
     {
      # $password=clean($_POST["password"]);
      # $username=clean($_POST["username"]);
@@ -32,9 +32,9 @@ if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["email"])&&i
          if ($_POST['type']=='client')
         {
 
-            create_client($id,$_POST['name'],$email,$_POST["number"],$image,$host,$user,$pass,$db);
+            create_client($id,$_POST['name'],$email,$_POST["telephone"],$image,$host,$user,$pass,$db);
          }else {
-           create_resto($id,$_POST['name'],$email,$_POST["number"],$_POST["facebook"],$_POST["instagram"],$_POST["whatsapp"],$_POST["url"],$image,$host,$user,$pass,$db);
+           create_resto($id,$_POST['name'],$email,$_POST["telephone"],$_POST["facebook"],$_POST["instagram"],$_POST["whatsapp"],$_POST["url"],$image,$host,$user,$pass,$db);
            create_menu($id,$_POST['name'],'',$host,$user,$pass,$db);
          }
          if (isset($_FILES["image"]))
