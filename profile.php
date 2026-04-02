@@ -58,37 +58,37 @@ if ($_SESSION['type']=='restaurant')
 ====================================
 
 🍽 STARTERS
-- Tomato Basil Soup .......... 8.50
-- Garlic Bread Basket ........ 6.00
-- Crispy Calamari ............ 12.00
-
+- Tomato Basil Soup .......... 8.50<br>
+- Garlic Bread Basket ........ 6.00<br>
+- Crispy Calamari ............ 12.00<br>
+<br>
 🥗 SALADS
-- Caesar Salad ............... 10.00
-- Greek Salad ................ 9.50
-- Quinoa & Avocado Bowl ...... 11.50
-
+- Caesar Salad ............... 10.00<br>
+- Greek Salad ................ 9.50<br>
+- Quinoa & Avocado Bowl ...... 11.50<br>
+<br>
 🍝 MAIN COURSES
-- Spaghetti Carbonara ........ 14.00
-- Grilled Salmon ............. 18.50
-- Chicken Alfredo ............ 15.00
-- Veggie Stir-Fry ............ 13.00
-
+- Spaghetti Carbonara ........ 14.00<br>
+- Grilled Salmon ............. 18.50<br>
+- Chicken Alfredo ............ 15.00<br>
+- Veggie Stir-Fry ............ 13.00<br>
+<br>
 🍰 DESSERTS
-- Chocolate Lava Cake ........ 7.50
-- Classic Cheesecake ......... 7.00
-- Fresh Fruit Platter ........ 6.50
-
+- Chocolate Lava Cake ........ 7.50<br>
+- Classic Cheesecake ......... 7.00<br>
+- Fresh Fruit Platter ........ 6.50<br>
+<br>
 🥤 BEVERAGES
-- Fresh Orange Juice ......... 4.50
-- Iced Tea ................... 3.50
-- Espresso ................... 2.50
-- Mineral Water .............. 2.00
+- Fresh Orange Juice ......... 4.50<br>
+- Iced Tea ................... 3.50<br>
+- Espresso ................... 2.50<br>
+- Mineral Water .............. 2.00<br>
+<br>
+====================================<br>
+Thank you for dining with us!<br>
+====================================<br>
 
-====================================
-Thank you for dining with us!
-====================================
-
-If you’d like, I can also make you a fancier version with ASCII art or a print-ready PDF menu.
+If you’d like, I can also make you a fancier version with ASCII art or a print-ready PDF menu.<br>
 Do you want me to create a stylish text menu with borders and icons?
 </li>
                                 </ul>
