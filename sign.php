@@ -1,171 +1,193 @@
+
 <?php
-// Start session BEFORE any output
-session_start();
-
-$host = "localhost";
-$user = "admin";
-$pass = "TOnFlores02:10.";
-$db   = "foodconnect";
-
+$host="localhost";
+$user="admin";
+$pass="TOnFlores02:10.";
+$db="foodconnect";
+echo '<link rel="stylesheet" href="../FoodConnect/css/sing.css">';
 include_once("functions.php");
+//sign up
+if (isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["telephone"])&&isset($_POST["confirme"]))
+{
+ 
+ 
+  
 
-// ----- Helper function to check if email already exists (since functions.php has no check_email) -----
-function email_exists_in_users($email, $host, $user, $pass, $db) {
-    $cn = mysqli_connect($host, $user, $pass, $db);
-    if (!$cn) return false;
-    $stmt = mysqli_prepare($cn, "SELECT id FROM users WHERE email = ?");
-    mysqli_stmt_bind_param($stmt, "s", $email);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_store_result($stmt);
-    $exists = mysqli_stmt_num_rows($stmt) > 0;
-    mysqli_stmt_close($stmt);
-    mysqli_close($cn);
-    return $exists;
-}
 
-// Process form submission
-if (isset($_POST["email"], $_POST["password"], $_POST["telephone"], $_POST["confirme"])) {
-    
-    $email      = $_POST["email"];
-    $password   = $_POST["password"];
-    $confirm    = $_POST["confirme"];
-    $phone      = $_POST["telephone"];
-    $type       = $_POST["role"];          // form uses "role", but functions expect "type"
-    $name       = $_POST["name"];
-    $facebook   = $_POST["facebook"] ?? '';
-    $instagram  = $_POST["instagram"] ?? '';
-    $whatsapp   = $_POST["whatsapp"] ?? '';
-    $url        = $_POST["url"] ?? '';
-    
-    // Validation (keep your original rules but fix typos)
-    $emailValid    = strlen($email) >= 8;   // your original rule
-    $passwordValid = strlen($password) >= 8 && strlen($password) <= 255;
-    $passMatch     = $password === $confirm;
-    $phoneValid    = strlen($phone) == 8;   // fixed: was $post["telephone"]
-    $emailNotExist = !email_exists_in_users($email, $host, $user, $pass, $db);
-    
-    if ($emailValid && $passwordValid && $passMatch && $phoneValid && $emailNotExist) {
-        
-        // Create user – note: create_user expects ($email, $type, $password, ...)
-        $id = create_user($email, $type, $password, $host, $user, $pass, $db);
-        
-        if ($id !== false && $id !== null) {
-            $_SESSION['email'] = $email;
-            $_SESSION['password'] = $password;   // not secure, but keeping your logic
-            $_SESSION['type'] = $type;
-            
-            $image = ''; // will be updated after file upload
-            
-            if ($type == 'client') {
-                create_client($id, $name, $email, $phone, $image, $host, $user, $pass, $db);
-            } else { // restaurant
-                // create_resto order: id, name, email, phone, facebook, instagram, whatsapp, image, url, host...
-                create_resto($id, $name, $email, $phone, $facebook, $instagram, $whatsapp, $image, $url, $host, $user, $pass, $db);
-                create_menu($id, $name, '', $host, $user, $pass, $db);
-            }
-            
-            // Handle profile image upload
-            if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
-                $upload_dir = "../FoodConnect/data/images/";
-                if (!file_exists($upload_dir)) {
-                    mkdir($upload_dir, 0777, true);
-                }
-                $original = basename($_FILES["image"]["name"]);
-                $ext = pathinfo($original, PATHINFO_EXTENSION);
-                $base = pathinfo($original, PATHINFO_FILENAME);
-                $target = $upload_dir . $base;
-                $counter = 0;
-                while (file_exists($target . $counter . "." . $ext)) {
-                    $counter++;
-                }
-                $final_path = $target . $counter . "." . $ext;
-                if (move_uploaded_file($_FILES["image"]["tmp_name"], $final_path)) {
-                    // change_image order: address, host, user, pass, db, pos, tab, id
-                    if ($type == 'client') {
-                        change_image($final_path, $host, $user, $pass, $db, '', 'client', $id);
-                    } else {
-                        change_image($final_path, $host, $user, $pass, $db, '', 'restaurant', $id);
+    if (strlen($_POST['email'])>=8&&strlen($_POST["password"])<=255&&strlen($_POST["password"])>=8&&strlen($_POST["password"])<=255&&$_POST["password"]==$_POST["confirme"]&&email_check($_POST['email'])&&strlen($post["telephone"])==8)
+        {
+            # $password=clean($_POST["password"]);
+            # $username=clean($_POST["username"]);
+            # $email=clean($_POST["email"]);
+            $email=$_POST['email'];
+            $passw=$_POST['password'];
+                if (!check_email($_POST['email'],$host,$user,$pass,$db)) 
+                {
+                    $id=create_user($_POST['email'],$_POST['password'],$_POST['type'],$host,$user,$pass,$db);
+                    $image='';
+                    session_start();
+                    $_SESSION['email']=$_POST['email'];
+                    $_SESSION['password']=$_POST['password'];
+                    $_SESSION['type']=$_POST['type'];
+                    if ($_POST['type']=='client')
+                    {
+
+                        create_client($id,$_POST['name'],$email,$_POST["telephone"],$image,$host,$user,$pass,$db);
                     }
-                }
-            }
+                    else 
+                    {
+                        create_resto($id,$_POST['name'],$email,$_POST["telephone"],$_POST["facebook"],$_POST["instagram"],$_POST["whatsapp"],$_POST["url"],$image,$host,$user,$pass,$db);
+                        create_menu($id,$_POST['name'],'',$host,$user,$pass,$db);
+                    }
+                    if (isset($_FILES["image"]))
+                {
+                foreach( $_FILES as $x =>$y)
+                {
+                
+                    $name= (basename($_FILES[$x]["name"]));
+                    $target="../FoodConnect/data/images".$x."";
+                    $type= substr($name,strpos($name,"."),strlen($name));
+                    $name=substr($name,0,strpos($name,"."));
+                    $target=$target.$name;
+                    $num=0;
+                
+                while(file_exists($target.$num.$type)) 
+                {
+                        $num++;
+                    }
+                    
+                    $target=$target.$num.$type;
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"],$target)) 
+                    {
+                
+                        
+                        if ($_POST['type']=='client') {
+                        change_image($target,$host,$user,$pass,$db,'','client',$id);
+                        }else {
+                            change_image($target,$host,$user,$pass,$db,'','restaurant',$id);
+                        }
+                    } 
+                    
+                    
+                    
             
-            header("Location: login.php");
-            exit();
-        } else {
+                }
+                    }
+                    header("Location:login.php");
+                
+                }
+            //account exists
+            else
+            {
+                sign();
+                warning('exists');
+            
+            }       
+    
+        }
+
+
+
+
+        //incorrect parameters
+        else
+        {
             sign();
-            warning('database_error');
+            warning('incorrect');
+        
         }
-    } else {
-        sign();
-        warning('incorrect');
-    }
-} else {
-    sign();
+
+
+
+
+
+
+
+
+
+}
+else
+{
+  sign();
 }
 
-// ----- FORM DISPLAY FUNCTIONS (cleaned HTML) -----
-function sign() {
-    echo '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="../FoodConnect/css/sing.css">
-    <link rel="stylesheet" href="../FoodConnect/css/global.css">
-</head>
-<body class="body">
-    <form action="../FoodConnect/sign.php" method="post">
-        <fieldset class="window">
-            <legend><h3>Create Account</h3></legend>
-            <div>
-                <input type="text" placeholder="Username" name="name" required><br>
-                <input type="password" placeholder="Password (8+ characters)" name="password" required><br>
-                <input type="password" placeholder="Confirm Password" name="confirme" required><br>
-                <input type="email" placeholder="Email" name="email" required><br>
-                <input type="tel" placeholder="Phone Number (8 digits)" name="telephone" pattern="[0-9]{8}" required><br>
-                <input type="file" name="image" accept="image/*"><br><br>
-                <label>Role:</label>
-                <select name="role" id="role" onchange="showItems()">
-                    <option value="client">Client</option>
-                    <option value="restaurant">Restaurant</option>
-                </select><br>
-                <div id="restaurantbox" style="display:none">
-                    <input type="text" placeholder="Facebook URL" name="facebook"><br>
-                    <input type="text" placeholder="Instagram URL" name="instagram"><br>
-                    <input type="text" placeholder="WhatsApp URL" name="whatsapp"><br>
-                    <input type="text" placeholder="Website URL" name="url"><br>
-                </div>
-                <a href="../FoodConnect/login.php">Already have an account? Login</a>
-                <input type="submit" value="Sign In">
-            </div>
-        </fieldset>
-    </form>
-    <script>
-        function showItems() {
-            var role = document.getElementById("role").value;
-            var box = document.getElementById("restaurantbox");
-            box.style.display = (role === "restaurant") ? "block" : "none";
-        }
-    </script>
-    <script src="../FoodConnect/js/sign.js"></script>
-</body>
-</html>';
+//creating the account
+function sign()
+{
+    echo '
+    <head>
+    
+  
+    </head>
+    <body class="body" >
+      <form action="../FoodConnect/sign.php" onsubmit="return test()" method="post" >
+      <fieldset class="window">
+      <legend><h3>create account</h3></legend>
+      <div>
+      <input type="text" placeholder="Username" id="username" name="name">
+      </br>
+      <input type="password" placeholder="password(8charecters)" id="password" name="password">
+      </br>
+      <input type="password" placeholder="password(8charecters)" id="confirme" name="confirme">
+      </br>
+      <input type="text" placeholder="Email" id="email" name="email" >
+      </br>
+      <input type="number" placeholder="Phone Number" id="number" name="telephone" >
+      </br>
+      <input type="file" placeholder="profile image" id="image" name="image" accept="image/*"><br><br>
+      <label for="age">role:</label>
+      <select name="role" id="role" onchange="showItems()" >
+              <option value="client">client</option>
+              <option value="restaurant">restourent</option>
+            </select>
+            <br>
+            <div id="restourentbox" style="display:none">
+           <br><br>
+            
+
+  <input type="text" placeholder="facebook page url" id="facebook" name="facebook"><br><br>
+  <input type="text" placeholder="instagrame url" id="instagram" name="instagram"><br><br>
+  <input type="text" placeholder="whatsapp url" id="whatsapp" name="whatsapp"><br>
+    <input type="text" placeholder="site url" id="url" name="url"><br>
+  </div>    
+  <script>
+function showItems() {
+  let value = document.getElementById("role").value;
+
+  document.getElementById("restourentbox").style.display = "none";
+
+  if (value === "restourent") {
+    document.getElementById("restourentbox").style.display = "block";
+  } 
+    
+}
+</script>
+        <a href="../FoodConnect/login.php" class="herf">Got an account? login!</a>
+      <input type="submit"  onsubmit="return test()" value="sign in" class="submit">
+      </div>
+      
+      </fieldset>
+      
+      </form>
+      
+      
+      <script src="FoodConnect/js/sign.js"></script>
+      
+      </body>
+    ';
+}
+function warning($case)
+{
+  if ($case='exists') {
+    echo'
+    <div class="popup-negative" >
+       <h2>failed to create an account<br>
+      (Sorry it seems the Username is taken, Try something else)
+      </h2>
+    </div>
+    ';
+  }
+    
 }
 
-function warning($case) {
-    if ($case == 'exists') {      // fixed: comparison, not assignment
-        echo '<div class="popup-negative">
-                <h2>Failed to create account<br>(Email already exists. Try logging in.)</h2>
-              </div>';
-    } elseif ($case == 'incorrect') {
-        echo '<div class="popup-negative">
-                <h2>Invalid information<br>Check: email (≥8 chars), password (8-255 chars), phone (8 digits).</h2>
-              </div>';
-    } elseif ($case == 'database_error') {
-        echo '<div class="popup-negative">
-                <h2>Database error<br>Please try again later.</h2>
-              </div>';
-    }
-}
 ?>
