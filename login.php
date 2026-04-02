@@ -1,7 +1,7 @@
 <?php
 include("sql_functions.php");
 
-include("functions.php");
+
 
 if (isset($_POST['email'])&&isset($_POST['password']))
 {
