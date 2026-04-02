@@ -123,7 +123,7 @@ function showItems() {
       
       
       <script src="FoodConnect/js/sign.js"></script>
-      <a href="FoodConnect/login.php">Got an account? login!</a>
+      <a href="FoodConnect/login.php" class="submit">Got an account? login!</a>
       </body>
     ';
 }
