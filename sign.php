@@ -120,9 +120,10 @@ function showItems() {
       </div>
       </fieldset>
       </form>
-      <a href="FoodConnect/login.php">Got an account? login!</a>
+      
       
       <script src="FoodConnect/js/sign.js"></script>
+      <a href="FoodConnect/login.php">Got an account? login!</a>
       </body>
     ';
 }
