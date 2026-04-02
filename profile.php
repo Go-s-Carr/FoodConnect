@@ -11,9 +11,7 @@
 </html><?php
 session_start();
 
-if (!isset($_SESSION['id'])) {
-   header('Location:login.php');
-}
+
 if ($_SESSION['type']=='restaurant')
 {
     # code...
